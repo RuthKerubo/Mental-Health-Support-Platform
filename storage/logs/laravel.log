@@ -1,0 +1,8 @@
+[2024-10-01 16:12:29] testing.ERROR: Trait "App\Models\SoftDeletes" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\SoftDeletes\" not found at /home/rkeggy/Desktop/mental-health-support-platform/app/Models/Category.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2024-10-01 16:12:29] testing.ERROR: Trait "App\Models\SoftDeletes" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\SoftDeletes\" not found at /home/rkeggy/Desktop/mental-health-support-platform/app/Models/Category.php:8)
+[stacktrace]
+#0 {main}
+"} 
