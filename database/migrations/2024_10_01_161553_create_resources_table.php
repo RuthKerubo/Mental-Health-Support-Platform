@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained()->onDelete('cascade'); // Foreign key for category
             $table->string('title');
+            $table->string('slug')->unique();
             $table->text('description');
+            $table->enum('type', ['article', 'helpline', 'support_group']);
             $table->date('published_at')->nullable();  // For filtering by year
             $table->unsignedInteger('relevance_score')->default(0);  // For relevance sorting
             $table->softDeletes();
