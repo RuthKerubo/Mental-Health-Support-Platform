@@ -64,4 +64,6 @@ class ResourceCategorizationTest extends TestCase
         $this->assertCount(1, $depressionResources);
         $this->assertEquals('Coping with Depression', $depressionResources->first()->title);
     }
+
+    
 }
