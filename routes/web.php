@@ -21,6 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/resources', [ResourceController::class, 'index'])->name('resources.index');
     Route::get('/resources/{resource}', [ResourceController::class, 'show'])->name('resources.show');
     Route::post('/resources/{resource}/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+
+    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
+
 });
 
 require __DIR__.'/auth.php';

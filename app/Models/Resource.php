@@ -18,7 +18,10 @@ class Resource extends Model
         'description', 
         'type', 
         'published_at', 
-        'relevance_score'
+        'relevance_score',
+        'image_path',
+        'file_path',
+        'external_link'
     ];
 
     protected $casts = [
@@ -64,5 +67,25 @@ class Resource extends Model
     public function getFormattedPublishedAtAttribute()
     {
         return $this->published_at ? Carbon::parse($this->published_at)->format('F j, Y') : null;
+    }
+
+    /**
+     * Get the full URL for the image.
+     *
+     * @return string|null
+     */
+    public function getImageUrlAttribute()
+    {
+        return $this->image_path ? asset('storage/' . $this->image_path) : null;
+    }
+
+    /**
+     * Get the full URL for the file.
+     *
+     * @return string|null
+     */
+    public function getFileUrlAttribute()
+    {
+        return $this->file_path ? asset('storage/' . $this->file_path) : null;
     }
 }

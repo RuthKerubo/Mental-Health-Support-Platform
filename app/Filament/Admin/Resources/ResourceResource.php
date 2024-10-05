@@ -44,6 +44,20 @@ class ResourceResource extends Resource
                     ->columnSpanFull()
                     ->label('Description'),
                 
+                Forms\Components\FileUpload::make('image_path')
+                    ->image()
+                    ->directory('resource-images')
+                    ->label('Resource Image'),
+                
+                Forms\Components\FileUpload::make('file_path')
+                    ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
+                    ->directory('resource-files')
+                    ->label('Resource File'),
+                
+                Forms\Components\TextInput::make('external_link')
+                    ->url()
+                    ->label('External Link'),
+                
                 Forms\Components\Select::make('type')
                     ->options([
                         'article' => 'Article',
@@ -59,9 +73,9 @@ class ResourceResource extends Resource
                 Forms\Components\TextInput::make('relevance_score')
                     ->label('Relevance Score')
                     ->numeric()
-                    ->step(1)  // Specifies that the input will increment by 1
-                    ->minValue(0)  
-                    ->maxValue(100)  
+                    ->step(1)
+                    ->minValue(0)
+                    ->maxValue(100)
                     ->default(0)
                     ->required(),
             ]);
@@ -94,7 +108,23 @@ class ResourceResource extends Resource
                     ->label('Relevance Score')
                     ->numeric()
                     ->sortable(),
-                
+                Tables\Columns\ImageColumn::make('image_path')
+                    ->label('Image')
+                    ->circular(),
+                    
+                Tables\Columns\IconColumn::make('file_path')
+                    ->label('Download')
+                    ->icon('heroicon-o-download')
+                    ->url(fn ($record) => $record->file_path ? asset('storage/' . $record->file_path) : null)
+                    ->openUrlInNewTab()
+                    ->visible(fn ($record) => !empty($record->file_path)),
+                    
+                Tables\Columns\TextColumn::make('external_link')
+                    ->label('External Link')
+                    ->url(fn ($record) => $record->external_link)
+                    ->openUrlInNewTab()
+                    ->visible(fn ($record) => !empty($record->external_link)),
+            
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()
