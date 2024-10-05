@@ -2205,3 +2205,20 @@
 #19 /home/rkeggy/Desktop/mental-health-support-platform/artisan(13): Illuminate\\Foundation\\Application->handleCommand()
 #20 {main}
 "} 
+[2024-10-05 20:26:56] local.ERROR: Command "server" is not defined.
+
+Did you mean one of these?
+    make:observer
+    serve {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"server\" is not defined.
+
+Did you mean one of these?
+    make:observer
+    serve at /home/rkeggy/Desktop/mental-health-support-platform/vendor/symfony/console/Application.php:702)
+[stacktrace]
+#0 /home/rkeggy/Desktop/mental-health-support-platform/vendor/symfony/console/Application.php(258): Symfony\\Component\\Console\\Application->find()
+#1 /home/rkeggy/Desktop/mental-health-support-platform/vendor/symfony/console/Application.php(167): Symfony\\Component\\Console\\Application->doRun()
+#2 /home/rkeggy/Desktop/mental-health-support-platform/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(197): Symfony\\Component\\Console\\Application->run()
+#3 /home/rkeggy/Desktop/mental-health-support-platform/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1203): Illuminate\\Foundation\\Console\\Kernel->handle()
+#4 /home/rkeggy/Desktop/mental-health-support-platform/artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#5 {main}
+"} 
