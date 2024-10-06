@@ -11,11 +11,46 @@ class ResourceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $resources = Resource::all();
-        return view('resources.index', compact('resources'));
+        $query = Resource::query();
+
+        // Search functionality
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            $query->where('title', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('description', 'LIKE', "%{$searchTerm}%");
+        }
+
+        // Category filter (if you have categories)
+        if ($request->has('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        $resources = $query->latest()->paginate(16);
+        $breadcrumbs = [
+            ['title' => 'Home', 'url' => route('dashboard')],
+            ['title' => 'Resources', 'url' => null]
+        ];
+    
+        return view('resources.index', compact('resources', 'breadcrumbs'));
+    }
+
+       
+
+     /**
+     * Display the specified resource.
+     */
+   
+    public function show(Resource $resource)
+    {
+        $breadcrumbs = [
+            ['title' => 'Home', 'url' => route('dashboard')],
+            ['title' => 'Resources', 'url' => route('resources.index')],
+            ['title' => $resource->title, 'url' => null]
+        ];
+    
+        return view('resources.show', compact('resource', 'breadcrumbs'));
     }
 
     /**
@@ -32,17 +67,10 @@ class ResourceController extends Controller
     public function store(Request $request)
     {
         //
-        return view('resources.show', compact('resource'));
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Feedback $feedback)
-    {
-        //
-    }
+   
 
     /**
      * Show the form for editing the specified resource.
