@@ -14,6 +14,7 @@ class Resource extends Model
     protected $fillable = [
         'category_id', 
         'slug', 
+        'user_id',
         'title', 
         'description', 
         'type', 
@@ -35,6 +36,15 @@ class Resource extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class);
+    }
     /**
      * Scope for filtering resources by year.
      *
