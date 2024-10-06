@@ -8,25 +8,27 @@ use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $feedbacks = Feedback::with('resource')->where('user_id', auth()->id())->latest()->paginate(10);
+        $breadcrumbs = [
+            ['title' => 'Home', 'url' => route('dashboard')],
+            ['title' => 'My Feedback', 'url' => null]
+        ];
+        return view('feedback.index', compact('feedbacks', 'breadcrumbs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(Resource $resource)
     {
-        //
+        $breadcrumbs = [
+            ['title' => 'Home', 'url' => route('dashboard')],
+            ['title' => 'Resources', 'url' => route('resources.index')],
+            ['title' => $resource->title, 'url' => route('resources.show', $resource)],
+            ['title' => 'Give Feedback', 'url' => null]
+        ];
+        return view('feedback.create', compact('resource', 'breadcrumbs'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request, Resource $resource)
     {
         $validated = $request->validate([
@@ -36,6 +38,9 @@ class FeedbackController extends Controller
             'is_anonymous' => 'boolean',
             'contact_email' => 'nullable|email',
             'found_helpful' => 'boolean',
+            'needs_follow_up' => 'boolean',
+            'preferred_contact_method' => 'nullable|string',
+            'contact_details' => 'nullable|string',
         ]);
 
         Feedback::create([
@@ -47,40 +52,21 @@ class FeedbackController extends Controller
             'is_anonymous' => $validated['is_anonymous'] ?? true,
             'contact_email' => $validated['is_anonymous'] ? null : $validated['contact_email'],
             'found_helpful' => $validated['found_helpful'] ?? false,
+            'needs_follow_up' => $validated['needs_follow_up'] ?? false,
+            'preferred_contact_method' => $validated['preferred_contact_method'] ?? null,
+            'contact_details' => $validated['contact_details'] ?? null,
         ]);
 
-        return redirect()->back()->with('success', 'Thank you for your feedback!');
+        return redirect()->route('resources.show', $resource)->with('success', 'Thank you for your feedback!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Feedback $feedback)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Feedback $feedback)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Feedback $feedback)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Feedback $feedback)
-    {
-        //
+        $breadcrumbs = [
+            ['title' => 'Home', 'url' => route('dashboard')],
+            ['title' => 'My Feedback', 'url' => route('feedback.index')],
+            ['title' => 'Feedback Details', 'url' => null]
+        ];
+        return view('feedback.show', compact('feedback', 'breadcrumbs'));
     }
 }

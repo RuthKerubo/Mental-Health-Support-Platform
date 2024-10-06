@@ -23,7 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/resources/{resource}/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
     Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
-
+    Route::get('/resources/{resource}/feedback/create', [FeedbackController::class, 'create'])->name('feedback.create');
+    Route::post('/resources/{resource}/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

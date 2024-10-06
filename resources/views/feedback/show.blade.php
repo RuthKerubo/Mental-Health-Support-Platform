@@ -1,44 +1,64 @@
 <x-app-layout>
+    <x-slot name="header">
+        <div class="flex justify-between items-center">
+            <div>
+                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                    {{ __('Feedback Details') }}
+                </h2>
+                <x-breadcrumbs :breadcrumbs="$breadcrumbs" />
+            </div>
+        </div>
+    </x-slot>
 
-@section('content')
-<div class="container mx-auto p-6">
-    <div class="bg-white shadow-md rounded-lg p-6">
-        <h1 class="text-3xl font-bold mb-4">{{ $resource->title }}</h1>
-        
-        <p class="text-gray-700 mb-4">{{ $resource->description }}</p>
-        
-        <p class="text-sm text-gray-500">Published: {{ $resource->published_at->format('M d, Y') }}</p>
-        
-        <!-- Feedback Section -->
-        <div class="mt-8">
-            <h2 class="text-2xl font-semibold mb-4">Leave Feedback</h2>
-            <form action="{{ route('feedback.store') }}" method="POST" class="space-y-4">
-                @csrf
-                <input type="hidden" name="resource_id" value="{{ $resource->id }}">
-
-                <div>
-                    <label for="rating" class="block text-sm font-medium">Rating</label>
-                    <select id="rating" name="rating" class="w-full p-2 border rounded">
-                        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
-                        <option value="4">⭐⭐⭐⭐ Very Good</option>
-                        <option value="3">⭐⭐⭐ Good</option>
-                        <option value="2">⭐⭐ Fair</option>
-                        <option value="1">⭐ Poor</option>
-                    </select>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h3 class="text-lg font-semibold mb-4">Feedback for: {{ $feedback->resource->title }}</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <p class="mb-2"><strong>Rating:</strong> {{ str_repeat('⭐', $feedback->rating) }}</p>
+                            <p class="mb-2"><strong>Emotional State:</strong> {{ ucfirst(str_replace('_', ' ', $feedback->emotional_state)) }}</p>
+                            <p class="mb-2"><strong>Found Helpful:</strong> {{ $feedback->found_helpful ? 'Yes' : 'No' }}</p>
+                            <p class="mb-2"><strong>Submitted Anonymously:</strong> {{ $feedback->is_anonymous ? 'Yes' : 'No' }}</p>
+                        </div>
+                        <div>
+                            <p class="mb-2"><strong>Needs Follow-up:</strong> {{ $feedback->needs_follow_up ? 'Yes' : 'No' }}</p>
+                            @if($feedback->needs_follow_up)
+                                <p class="mb-2"><strong>Preferred Contact Method:</strong> {{ ucfirst($feedback->preferred_contact_method) }}</p>
+                                <p class="mb-2"><strong>Contact Details:</strong> {{ $feedback->contact_details }}</p>
+                            @endif
+                            @if(!$feedback->is_anonymous)
+                                <p class="mb-2"><strong>Contact Email:</strong> {{ $feedback->contact_email }}</p>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <h4 class="text-md font-semibold mb-2">Comment:</h4>
+                        <p class="bg-gray-100 dark:bg-gray-700 p-4 rounded">{{ $feedback->comment ?? 'No comment provided.' }}</p>
+                    </div>
+                    @if($feedback->attachments)
+                        <div class="mt-6">
+                            <h4 class="text-md font-semibold mb-2">Attachments:</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                @foreach(json_decode($feedback->attachments) as $attachment)
+                                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded">
+                                        <a href="{{ asset('storage/' . $attachment) }}" target="_blank" class="text-blue-500 hover:underline">
+                                            View Attachment
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                    <div class="mt-6 flex justify-between items-center">
+                        <p class="text-sm text-gray-500">Submitted on: {{ $feedback->created_at->format('F j, Y, g:i a') }}</p>
+                        <a href="{{ route('feedback.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            Back to Feedback List
+                        </a>
+                    </div>
                 </div>
-
-                <div>
-                    <label for="comment" class="block text-sm font-medium">Your Feedback</label>
-                    <textarea id="comment" name="comment" rows="4" class="w-full p-2 border rounded"></textarea>
-                </div>
-
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                    Submit Feedback
-                </button>
-            </form>
+            </div>
         </div>
     </div>
-</div>
-@endsection
-
 </x-app-layout>
