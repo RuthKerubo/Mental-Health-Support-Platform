@@ -57,6 +57,7 @@ class ResourceResource extends Resource
 
                 Forms\Components\FileUpload::make('image_path')
                     ->image()
+                    ->maxSize(5120) // 5MB
                     ->directory('resource-images')
                     ->label('Resource Image'),
 

@@ -52,6 +52,7 @@ return array(
     'App\\Models\\Feedback' => $baseDir . '/app/Models/Feedback.php',
     'App\\Models\\Resource' => $baseDir . '/app/Models/Resource.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+    'App\\Policies\\FeedbackPolicy' => $baseDir . '/app/Policies/FeedbackPolicy.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\FilamentServiceProvider' => $baseDir . '/app/Providers/FilamentServiceProvider.php',
     'App\\Providers\\Filament\\AdminPanelProvider' => $baseDir . '/app/Providers/Filament/AdminPanelProvider.php',

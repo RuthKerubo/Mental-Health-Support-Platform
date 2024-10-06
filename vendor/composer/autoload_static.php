@@ -791,6 +791,7 @@ class ComposerStaticInit2a58362eb45f5fce17e852abb0a2ea50
         'App\\Models\\Feedback' => __DIR__ . '/../..' . '/app/Models/Feedback.php',
         'App\\Models\\Resource' => __DIR__ . '/../..' . '/app/Models/Resource.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Policies\\FeedbackPolicy' => __DIR__ . '/../..' . '/app/Policies/FeedbackPolicy.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\FilamentServiceProvider' => __DIR__ . '/../..' . '/app/Providers/FilamentServiceProvider.php',
         'App\\Providers\\Filament\\AdminPanelProvider' => __DIR__ . '/../..' . '/app/Providers/Filament/AdminPanelProvider.php',

@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html:delegated
+      - ./storage:/var/www/html/storage:delegated
+    environment:
+      - DB_HOST=db
+      - DB_DATABASE=mental_health_db
+      - DB_USERNAME=general_user
+      - DB_PASSWORD=general@2024
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: laravel_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: mental_health_db
+      MYSQL_ROOT_PASSWORD: Crewso@26
+      MYSQL_USER: general_user
+      MYSQL_PASSWORD: general@2024
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - "3307:3306"
+
+volumes:
+  dbdata:
+
+networks:
+  default:
+    name: laravel_net
