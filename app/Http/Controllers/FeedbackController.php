@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Feedback;
 use App\Models\Resource;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
+    use AuthorizesRequests;
     public function index()
     {
         $feedbacks = Feedback::with('resource')->where('user_id', auth()->id())->latest()->paginate(10);
@@ -62,6 +63,8 @@ class FeedbackController extends Controller
 
     public function show(Feedback $feedback)
     {
+        $this->authorize('view', $feedback);
+
         $breadcrumbs = [
             ['title' => 'Home', 'url' => route('dashboard')],
             ['title' => 'My Feedback', 'url' => route('feedback.index')],

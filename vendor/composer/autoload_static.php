@@ -44,13 +44,13 @@ class ComposerStaticInit2a58362eb45f5fce17e852abb0a2ea50
         '9261e07cd92c53dcc971c7c88c176c04' => __DIR__ . '/..' . '/danharrin/date-format-converter/src/helpers.php',
         '9720327d09ed9a4ba00c9b5071b71c7d' => __DIR__ . '/..' . '/danharrin/date-format-converter/src/standards.php',
         '2ad94ea6f6f6013119e9abcf4e302a08' => __DIR__ . '/..' . '/filament/forms/src/helpers.php',
-        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         'b69d5f1f95cd1ed438c038b6cbcc45b5' => __DIR__ . '/..' . '/filament/notifications/src/Testing/Autoload.php',
-        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '89e9938b64b06cc502d7ceca69a380fe' => __DIR__ . '/..' . '/filament/filament/src/global_helpers.php',
         'ebb446bb6d02e998480945fbbb73dc64' => __DIR__ . '/..' . '/filament/filament/src/helpers.php',
-        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
+        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -230,6 +230,8 @@ class ComposerStaticInit2a58362eb45f5fce17e852abb0a2ea50
             'Brick\\Math\\' => 11,
             'BladeUI\\Icons\\' => 14,
             'BladeUI\\Heroicons\\' => 18,
+            'BezhanSalleh\\FilamentShield\\Database\\Factories\\' => 47,
+            'BezhanSalleh\\FilamentShield\\' => 28,
         ),
         'A' => 
         array (
@@ -713,6 +715,14 @@ class ComposerStaticInit2a58362eb45f5fce17e852abb0a2ea50
         array (
             0 => __DIR__ . '/..' . '/blade-ui-kit/blade-heroicons/src',
         ),
+        'BezhanSalleh\\FilamentShield\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bezhansalleh/filament-shield/database/factories',
+        ),
+        'BezhanSalleh\\FilamentShield\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -772,6 +782,7 @@ class ComposerStaticInit2a58362eb45f5fce17e852abb0a2ea50
         'App\\Http\\Middleware\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminMiddleware.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
+        'App\\Http\\Middleware\\EnsureUserIsAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/EnsureUserIsAdmin.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
@@ -786,6 +797,33 @@ class ComposerStaticInit2a58362eb45f5fce17e852abb0a2ea50
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
         'App\\View\\Components\\GuestLayout' => __DIR__ . '/../..' . '/app/View/Components/GuestLayout.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+        'BezhanSalleh\\FilamentShield\\Commands\\Concerns\\CanGeneratePolicy' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Commands/Concerns/CanGeneratePolicy.php',
+        'BezhanSalleh\\FilamentShield\\Commands\\Concerns\\CanManipulateFiles' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Commands/Concerns/CanManipulateFiles.php',
+        'BezhanSalleh\\FilamentShield\\Commands\\MakeShieldDoctorCommand' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Commands/MakeShieldDoctorCommand.php',
+        'BezhanSalleh\\FilamentShield\\Commands\\MakeShieldGenerateCommand' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Commands/MakeShieldGenerateCommand.php',
+        'BezhanSalleh\\FilamentShield\\Commands\\MakeShieldInstallCommand' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Commands/MakeShieldInstallCommand.php',
+        'BezhanSalleh\\FilamentShield\\Commands\\MakeShieldPublishCommand' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Commands/MakeShieldPublishCommand.php',
+        'BezhanSalleh\\FilamentShield\\Commands\\MakeShieldSeederCommand' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Commands/MakeShieldSeederCommand.php',
+        'BezhanSalleh\\FilamentShield\\Commands\\MakeShieldSuperAdminCommand' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Commands/MakeShieldSuperAdminCommand.php',
+        'BezhanSalleh\\FilamentShield\\Commands\\MakeShieldUpgradeCommand' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Commands/MakeShieldUpgradeCommand.php',
+        'BezhanSalleh\\FilamentShield\\Concerns\\CanCustomizeColumns' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Concerns/CanCustomizeColumns.php',
+        'BezhanSalleh\\FilamentShield\\Concerns\\CanLocalizePermissionLabels' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Concerns/CanLocalizePermissionLabels.php',
+        'BezhanSalleh\\FilamentShield\\Concerns\\HasSimpleResourcePermissionView' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Concerns/HasSimpleResourcePermissionView.php',
+        'BezhanSalleh\\FilamentShield\\Contracts\\HasShieldPermissions' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Contracts/HasShieldPermissions.php',
+        'BezhanSalleh\\FilamentShield\\Facades\\FilamentShield' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Facades/FilamentShield.php',
+        'BezhanSalleh\\FilamentShield\\FilamentShield' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/FilamentShield.php',
+        'BezhanSalleh\\FilamentShield\\FilamentShieldPlugin' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/FilamentShieldPlugin.php',
+        'BezhanSalleh\\FilamentShield\\FilamentShieldServiceProvider' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/FilamentShieldServiceProvider.php',
+        'BezhanSalleh\\FilamentShield\\Forms\\ShieldSelectAllToggle' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Forms/ShieldSelectAllToggle.php',
+        'BezhanSalleh\\FilamentShield\\Resources\\RoleResource' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Resources/RoleResource.php',
+        'BezhanSalleh\\FilamentShield\\Resources\\RoleResource\\Pages\\CreateRole' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Resources/RoleResource/Pages/CreateRole.php',
+        'BezhanSalleh\\FilamentShield\\Resources\\RoleResource\\Pages\\EditRole' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Resources/RoleResource/Pages/EditRole.php',
+        'BezhanSalleh\\FilamentShield\\Resources\\RoleResource\\Pages\\ListRoles' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Resources/RoleResource/Pages/ListRoles.php',
+        'BezhanSalleh\\FilamentShield\\Resources\\RoleResource\\Pages\\ViewRole' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Resources/RoleResource/Pages/ViewRole.php',
+        'BezhanSalleh\\FilamentShield\\Support\\Utils' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Support/Utils.php',
+        'BezhanSalleh\\FilamentShield\\Traits\\HasPageShield' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Traits/HasPageShield.php',
+        'BezhanSalleh\\FilamentShield\\Traits\\HasPanelShield' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Traits/HasPanelShield.php',
+        'BezhanSalleh\\FilamentShield\\Traits\\HasWidgetShield' => __DIR__ . '/..' . '/bezhansalleh/filament-shield/src/Traits/HasWidgetShield.php',
         'BladeUI\\Heroicons\\BladeHeroiconsServiceProvider' => __DIR__ . '/..' . '/blade-ui-kit/blade-heroicons/src/BladeHeroiconsServiceProvider.php',
         'BladeUI\\Icons\\BladeIconsServiceProvider' => __DIR__ . '/..' . '/blade-ui-kit/blade-icons/src/BladeIconsServiceProvider.php',
         'BladeUI\\Icons\\Components\\Icon' => __DIR__ . '/..' . '/blade-ui-kit/blade-icons/src/Components/Icon.php',

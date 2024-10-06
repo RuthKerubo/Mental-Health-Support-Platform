@@ -21,4 +21,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+    
+    protected $policies = [
+        Feedback::class => FeedbackPolicy::class,
+    ];
 }

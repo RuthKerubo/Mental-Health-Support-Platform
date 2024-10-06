@@ -18,7 +18,7 @@
                         @csrf
                         <div class="mb-4">
                             <label for="rating" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Rating</label>
-                            <select name="rating" id="rating" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <select name="rating" id="rating" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 @for ($i = 1; $i <= 5; $i++)
                                     <option value="{{ $i }}">{{ str_repeat('⭐', $i) }}</option>
                                 @endfor
@@ -27,7 +27,7 @@
 
                         <div class="mb-4">
                             <label for="emotional_state" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Emotional State</label>
-                            <select name="emotional_state" id="emotional_state" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <select name="emotional_state" id="emotional_state" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 <option value="very_positive">😄 Very Positive</option>
                                 <option value="positive">🙂 Positive</option>
                                 <option value="neutral">😐 Neutral</option>
@@ -38,38 +38,38 @@
 
                         <div class="mb-4">
                             <label for="comment" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Comment</label>
-                            <textarea name="comment" id="comment" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                            <textarea name="comment" id="comment" rows="4" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
                         </div>
 
                         <div class="mb-4">
                             <label class="inline-flex items-center">
-                                <input type="checkbox" name="found_helpful" value="1" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <input type="checkbox" name="found_helpful" value="1" class="rounded border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">I found this resource helpful</span>
                             </label>
                         </div>
 
                         <div class="mb-4">
                             <label class="inline-flex items-center">
-                                <input type="checkbox" name="is_anonymous" value="1" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <input type="checkbox" name="is_anonymous" value="1" class="rounded border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">Submit anonymously</span>
                             </label>
                         </div>
 
                         <div class="mb-4">
                             <label for="contact_email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Contact Email (optional)</label>
-                            <input type="email" name="contact_email" id="contact_email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <input type="email" name="contact_email" id="contact_email" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                         </div>
 
                         <div class="mb-4">
                             <label class="inline-flex items-center">
-                                <input type="checkbox" name="needs_follow_up" value="1" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <input type="checkbox" name="needs_follow_up" value="1" class="rounded border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">I would like a follow-up</span>
                             </label>
                         </div>
 
                         <div class="mb-4">
                             <label for="preferred_contact_method" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Preferred Contact Method</label>
-                            <select name="preferred_contact_method" id="preferred_contact_method" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <select name="preferred_contact_method" id="preferred_contact_method" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 <option value="email">Email</option>
                                 <option value="phone">Phone</option>
                             </select>
@@ -77,7 +77,7 @@
 
                         <div class="mb-4">
                             <label for="contact_details" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Contact Details</label>
-                            <input type="text" name="contact_details" id="contact_details" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <input type="text" name="contact_details" id="contact_details" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                         </div>
 
                         <div class="flex items-center justify-end mt-4">

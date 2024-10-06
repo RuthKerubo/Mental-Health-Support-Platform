@@ -22,9 +22,11 @@ class Resource extends Model
         'relevance_score',
         'image_path',
         'file_path',
-        'external_link'
+        'external_link',
+        'contact_number',
+        'support_group_link',
+        'availability'
     ];
-
     protected $casts = [
         'published_at' => 'date', 
         'relevance_score' => 'integer', 
@@ -97,5 +99,32 @@ class Resource extends Model
     public function getFileUrlAttribute()
     {
         return $this->file_path ? asset('storage/' . $this->file_path) : null;
+    }
+
+    public function scopeHelplines($query)
+    {
+        return $query->where('type', 'helpline');
+    }
+
+    public function scopeSupportGroups($query)
+    {
+        return $query->where('type', 'support_group');
+    }
+
+    public function scopeArticles($query)
+    {
+        return $query->where('type', 'article');
+    }
+
+    public function getContactInfoAttribute()
+    {
+        switch($this->type) {
+            case 'helpline':
+                return $this->contact_number;
+            case 'support_group':
+                return $this->support_group_link;
+            default:
+                return null;
+        }
     }
 }

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '6a09820bf82770b765e4731a109a6fbe365d401e',
+        'reference' => '818bbd5b4e8aea88bd9793246dd8c2e98d3b9f23',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -17,6 +17,15 @@
             'install_path' => __DIR__ . '/../anourvalar/eloquent-serialize',
             'aliases' => array(),
             'reference' => '6d7a868ae4218b9d7796334ff9a17e1539bad48a',
+            'dev_requirement' => false,
+        ),
+        'bezhansalleh/filament-shield' => array(
+            'pretty_version' => '3.2.6',
+            'version' => '3.2.6.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../bezhansalleh/filament-shield',
+            'aliases' => array(),
+            'reference' => '212428385855256d5499b02b6148b7c9eaa1b1fb',
             'dev_requirement' => false,
         ),
         'blade-ui-kit/blade-heroicons' => array(
@@ -571,7 +580,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '6a09820bf82770b765e4731a109a6fbe365d401e',
+            'reference' => '818bbd5b4e8aea88bd9793246dd8c2e98d3b9f23',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(

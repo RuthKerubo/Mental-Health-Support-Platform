@@ -28,7 +28,7 @@
                                     <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
                                         Emotional State: {{ ucfirst(str_replace('_', ' ', $feedback->emotional_state)) }}
                                     </p>
-                                    <a href="{{ route('feedback.show', $feedback) }}" class="text-blue-500 hover:underline">View Details</a>
+                                    <a href="{{ route('feedback.show', $feedback) }}" class="text-blue-600 hover:underline">View Details</a>
                                 </div>
                             @endforeach
                         </div>

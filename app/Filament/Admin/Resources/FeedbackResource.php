@@ -113,22 +113,23 @@ class FeedbackResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('resource.title')
+                    ->label('Resource')
                     ->searchable()
                     ->sortable(),
                 
                 Tables\Columns\IconColumn::make('is_anonymous')
+                    ->label('Anonymous')
                     ->boolean()
                     ->sortable(),
                 
                 Tables\Columns\TextColumn::make('emotional_state')
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'very_positive' => 'success',
-                        'positive' => 'info',
-                        'neutral' => 'warning',
-                        'negative' => 'danger',
-                        'very_negative' => 'danger',
-                    })
+                    ->colors([
+                        'success' => 'very_positive',
+                        'info' => 'positive',
+                        'warning' => 'neutral',
+                        'danger' => ['negative', 'very_negative'],
+                    ])
                     ->formatStateUsing(fn (string $state): string => str_replace('_', ' ', ucfirst($state)))
                     ->sortable(),
                 
@@ -137,21 +138,34 @@ class FeedbackResource extends Resource
                     ->sortable(),
                 
                 Tables\Columns\IconColumn::make('found_helpful')
+                    ->label('Helpful')
                     ->boolean()
                     ->sortable(),
                 
                 Tables\Columns\IconColumn::make('needs_follow_up')
+                    ->label('Follow Up')
                     ->boolean()
                     ->sortable(),
                 
+                Tables\Columns\TextColumn::make('contact_details')
+                    ->searchable()
+                    ->limit(30)
+                    ->tooltip(function (Tables\Columns\TextColumn $column): ?string {
+                        $state = $column->getState();
+                        return strlen($state) > 30 ? $state : null;
+                    })
+                    ->visible(fn ($record) => $record && $record->needs_follow_up),
+                
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Submitted')
                     ->dateTime()
                     ->sortable(),
                 
                 Tables\Columns\TextColumn::make('followed_up_at')
+                    ->label('Followed Up')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -180,7 +194,6 @@ class FeedbackResource extends Resource
                 ]),
             ]);
     }
-
     public static function getRelations(): array
     {
         return [
