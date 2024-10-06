@@ -83,6 +83,7 @@ return [
     | Livewire's standard 200ms delay.
     |
     */
+    'middleware' => ['web', 'auth', 'role:admin'],
 
     'livewire_loading_delay' => 'default',
 
