@@ -1,109 +1,92 @@
+Based on the information provided and the context of your dockerized application, here's a suggested README for your MindScape mental health support platform:
 
 # MindScape: Mental Health Support Platform
 
-## Overview
-
-MindScape is an accessible mental health platform designed to provide resources, helplines, and tools to help individuals manage their mental well-being. Our mission is to make mental health support available to everyone, offering a range of free services to cater to various mental health needs.
+MindScape is a dockerized web application designed to provide accessible mental health resources and support. Our platform offers a range of services including helplines, a resource library, and community support groups to help users navigate their mental health journey.
 
 ## Features
 
-- **Helplines**: Connect with trained professionals available 24/7 for guidance and support.
-- **Resource Library**: Access a wide range of articles, tools, and self-help guides tailored to your mental health journey.
-- **Community Support Groups**: Join and participate in community support groups to find strength in shared experiences.
-- **Feedback System**: Provide feedback on resources to help improve the platform and assist others.
+- Resource Library: Access a wide range of articles, tools, and self-help guides.
+- Helplines: Connect with trained professionals available 24/7.
+- Community Support Groups: Join and participate in supportive communities.
+- Feedback System: Users can provide feedback on resources, helping us improve our offerings.
 
 ## Technology Stack
 
-- **Frontend**: Tailwind CSS, Flowbite Library
-- **Backend**: Laravel (PHP framework)
-- **Admin Panel**: Filament
+- Laravel (PHP Framework)
+- MySQL Database
+- Docker
+- Filament (Admin Panel)
+- Tailwind CSS
+- Node.js and npm for asset compilation
 
 ## Getting Started
 
 ### Prerequisites
 
-- PHP 8.3 or higher
-- Composer
-- Node.js and npm
-- MySQL or compatible database
+- Docker
+- Docker Compose
 
 ### Installation
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/mindscape.git
+   git clone https://github.com/RuthKerubo/Mental-Health-Support-Platform.git
+   cd Mental-Health-Support-Platform
    ```
 
-2. Install PHP dependencies:
+2. Copy the example environment file:
    ```
-   composer install
-   ```
-
-3. Install JavaScript dependencies:
-   ```
-   npm install
+   cp .env.example .env
    ```
 
-4. Copy the `.env.example` file to `.env` and configure your environment variables, including database settings.
-
-5. Generate an application key:
+3. Build and start the Docker containers:
    ```
-   php artisan key:generate
+   docker-compose up -d --build
    ```
 
-6. Run database migrations:
+4. Install PHP dependencies:
    ```
-   php artisan migrate
-   ```
-
-7. Seed the database (if applicable):
-   ```
-   php artisan db:seed
+   docker-compose exec app composer install
    ```
 
-8. Compile assets:
+5. Install Node.js dependencies and compile assets:
    ```
-   npm run dev
-   ```
-
-9. Start the development server:
-   ```
-   php artisan serve
+   docker-compose exec app npm install
+   docker-compose exec app npm run dev
    ```
 
-## Usage
+6. Generate application key:
+   ```
+   docker-compose exec app php artisan key:generate
+   ```
 
-- Visit `http://localhost:8000` to access the main application.
-- Admin panel can be accessed at `http://localhost:8000/admin`.
+7. Run database migrations and seed the database:
+   ```
+   docker-compose exec app php artisan migrate --seed
+   ```
+
+8. Create a symbolic link for storage:
+   ```
+   docker-compose exec app php artisan storage:link
+   ```
+
+### Accessing the Application
+
+- Main application: http://localhost:8000
+- Admin panel: http://localhost:8000/admin
+
+### Admin Credentials
+
+For testing purposes, you can use the following admin credentials:
+
+- Email: admin@gmail.com
+- Password: Admin@1234
+
+**Note**: These credentials are for testing only. Please change them immediately in a production environment.
 
 ## License
 
-This project is open-source and available under the [MIT License](LICENSE.md).
+This project is licensed under the MIT License.
 
-## Support
 
-For more information or support, please contact us through our contact form or email support@mindscape.com.
-
-## Acknowledgements
-
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Flowbite Library](https://flowbite.com/)
-- [Laravel](https://laravel.com/)
-- [Filament](https://filamentphp.com/)
-
----
-
-MindScape - Your journey to better mental health starts here.
-```
-
-This README provides a comprehensive overview of your project, including:
-
-1. A brief description of MindScape and its purpose
-2. Key features of the platform
-3. The technology stack used
-4. Installation and setup instructions
-5. Usage information
-6. How to contribute to the project
-7. Licensing information
-8. Support contacts
-9. Acknowledgements of key technologies used
