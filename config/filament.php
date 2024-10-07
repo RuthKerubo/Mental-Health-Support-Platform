@@ -86,15 +86,10 @@ return [
 
     'livewire_loading_delay' => 'default',
 
-    /*
-   |--------------------------------------------------------------------------
-   | Auth / User Configuration
-   |--------------------------------------------------------------------------
-   */
     'auth' => [
-        'guard' => 'admin',
+        'guard' => env('FILAMENT_AUTH_GUARD', 'admin'),
         'pages' => [
-            'login' => \Filament\Http\Livewire\Auth\Login::class,
+            'login' => \Filament\Pages\Auth\Login::class,
         ],
     ],
 
@@ -111,5 +106,6 @@ return [
             \App\Http\Middleware\AdminMiddleware::class,
         ],
     ],
+
 
 ];

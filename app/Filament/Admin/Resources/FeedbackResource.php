@@ -15,7 +15,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class FeedbackResource extends Resource
 {
-    protected static ?int $navigationSort = 1;
+    protected static ?string $navigationGroup = 'Administration';
+
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $model = Feedback::class;
 

@@ -17,90 +17,113 @@ class ResourceResource extends Resource
 {
     protected static ?string $model = ResourceModel::class;
 
-    // Changed the navigation icon to 'heroicon-o-book-open' (suggestive of resources)
+    protected static ?string $navigationGroup = 'Administration';
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('type')
-                    ->options([
-                        'article' => 'Article',
-                        'helpline' => 'Helpline',
-                        'support_group' => 'Support Group',
-                    ])
-                    ->required()
-                    ->label('Type')
-                    ->reactive()
-                    ->afterStateUpdated(fn (callable $set) => $set('title', null)),
-
-                Forms\Components\Select::make('category_id')
-                    ->relationship('category', 'name')
-                    ->required()
-                    ->label('Category'),
-
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255)
-                    ->label('Title'),
-
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->unique('resources', 'slug', fn($record) => $record)
-                    ->label('Slug'),
-
-                Forms\Components\Textarea::make('description')
-                    ->required()
-                    ->columnSpanFull()
-                    ->label('Description'),
-
-                Forms\Components\FileUpload::make('image_path')
-                    ->image()
-                    ->maxSize(5120) // 5MB
-                    ->directory('resource-images')
-                    ->label('Resource Image'),
-
-                Forms\Components\FileUpload::make('file_path')
-                    ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
-                    ->directory('resource-files')
-                    ->preserveFilenames()
-                    ->label('Resource File')
-                    ->visible(fn (callable $get) => $get('type') === 'article'),
-
-                Forms\Components\TextInput::make('external_link')
-                    ->url()
-                    ->label('External Link')
-                    ->visible(fn (callable $get) => $get('type') === 'article'),
-
-                Forms\Components\TextInput::make('contact_number')
-                    ->tel()
-                    ->label('Contact Number')
-                    ->visible(fn (callable $get) => $get('type') === 'helpline'),
-
-                Forms\Components\TextInput::make('support_group_link')
-                    ->url()
-                    ->label('Support Group Link')
-                    ->visible(fn (callable $get) => $get('type') === 'support_group'),
-
-                Forms\Components\TextInput::make('availability')
-                    ->label('Availability')
-                    ->visible(fn (callable $get) => in_array($get('type'), ['helpline', 'support_group'])),
-
-                Forms\Components\DatePicker::make('published_at')
-                    ->label('Published Date'),
-
-                Forms\Components\TextInput::make('relevance_score')
-                    ->label('Relevance Score')
-                    ->numeric()
-                    ->step(1)
-                    ->minValue(0)
-                    ->maxValue(100)
-                    ->default(0)
-                    ->required(),
+                Forms\Components\Section::make('Basic Information')
+                    ->schema([
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\Select::make('type')
+                                    ->options([
+                                        'article' => 'Article',
+                                        'helpline' => 'Helpline',
+                                        'support_group' => 'Support Group',
+                                    ])
+                                    ->required()
+                                    ->label('Type')
+                                    ->reactive()
+                                    ->afterStateUpdated(fn (callable $set) => $set('title', null)),
+    
+                                Forms\Components\Select::make('category_id')
+                                    ->relationship('category', 'name')
+                                    ->required()
+                                    ->label('Category'),
+    
+                                Forms\Components\TextInput::make('title')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->label('Title'),
+    
+                                Forms\Components\TextInput::make('slug')
+                                    ->required()
+                                    ->unique('resources', 'slug', fn($record) => $record)
+                                    ->label('Slug'),
+                            ]),
+    
+                        Forms\Components\Textarea::make('description')
+                            ->required()
+                            ->columnSpanFull()
+                            ->label('Description'),
+                    ]),
+    
+                Forms\Components\Section::make('Media & Files')
+                    ->schema([
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\FileUpload::make('image_path')
+                                    ->image()
+                                    ->maxSize(5120)
+                                    ->directory('resource-images')
+                                    ->label('Resource Image'),
+    
+                                Forms\Components\FileUpload::make('file_path')
+                                    ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
+                                    ->directory('resource-files')
+                                    ->preserveFilenames()
+                                    ->label('Resource File')
+                                    ->visible(fn (callable $get) => $get('type') === 'article'),
+                            ]),
+                    ]),
+    
+                Forms\Components\Section::make('Additional Details')
+                    ->schema([
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('external_link')
+                                    ->url()
+                                    ->label('External Link')
+                                    ->visible(fn (callable $get) => $get('type') === 'article'),
+    
+                                Forms\Components\TextInput::make('contact_number')
+                                    ->tel()
+                                    ->label('Contact Number')
+                                    ->visible(fn (callable $get) => $get('type') === 'helpline'),
+    
+                                Forms\Components\TextInput::make('support_group_link')
+                                    ->url()
+                                    ->label('Support Group Link')
+                                    ->visible(fn (callable $get) => $get('type') === 'support_group'),
+    
+                                Forms\Components\TextInput::make('availability')
+                                    ->label('Availability')
+                                    ->visible(fn (callable $get) => in_array($get('type'), ['helpline', 'support_group'])),
+                            ]),
+                    ]),
+    
+                Forms\Components\Section::make('Publishing Details')
+                    ->schema([
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\DatePicker::make('published_at')
+                                    ->label('Published Date'),
+    
+                                Forms\Components\TextInput::make('relevance_score')
+                                    ->label('Relevance Score')
+                                    ->numeric()
+                                    ->step(1)
+                                    ->minValue(0)
+                                    ->maxValue(100)
+                                    ->default(0)
+                                    ->required(),
+                            ]),
+                    ]),
             ]);
     }
-
     public static function table(Table $table): Table
     {
         return $table
