@@ -16,7 +16,6 @@ MindScape is a dockerized web application designed to provide accessible mental 
 - Laravel (PHP Framework)
 - MySQL Database
 - Docker
-- Filament (Admin Panel)
 - Tailwind CSS
 - Node.js and npm for asset compilation
 
