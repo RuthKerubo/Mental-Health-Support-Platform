@@ -19,7 +19,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Http\Middleware\EnsureUserIsAdmin;
-use App\Filament\Widgets\DashboardStats;
+use App\Filament\Admin\Widgets\DashboardStats;
 
 class AdminPanelProvider extends PanelProvider
 {
