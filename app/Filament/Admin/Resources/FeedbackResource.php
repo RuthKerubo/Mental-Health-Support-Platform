@@ -17,7 +17,7 @@ class FeedbackResource extends Resource
 {
     protected static ?string $navigationGroup = 'Administration';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $model = Feedback::class;
 

@@ -1,6 +1,7 @@
 
 services:
   app:
+    user: root
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,13 +12,25 @@ services:
     volumes:
       - .:/var/www/html:delegated
       - ./storage:/var/www/html/storage:delegated
+      - ./vendor:/var/www/html/vendor:delegated
     environment:
+      - APP_ENV=local
       - DB_HOST=db
       - DB_DATABASE=mental_health_db
       - DB_USERNAME=general_user
       - DB_PASSWORD=general@2024
+      - MYSQL_ATTR_SSL_VERIFY_SERVER_CERT=false
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    networks:
+      - laravel_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   db:
     image: mysql:8.0
@@ -25,17 +38,27 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: mental_health_db
-      MYSQL_ROOT_PASSWORD: Crewso@26
       MYSQL_USER: general_user
-      MYSQL_PASSWORD: general@2024
+      MYSQL_PASSWORD: 'general@2024'
+      MYSQL_ROOT_HOST: '%'
     volumes:
       - dbdata:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
     ports:
       - "3307:3306"
+    networks:
+      - laravel_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "general_user", "-p${MYSQL_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
 volumes:
   dbdata:
+    driver: local
 
 networks:
-  default:
-    name: laravel_net
+  laravel_net:
+    driver: bridge
